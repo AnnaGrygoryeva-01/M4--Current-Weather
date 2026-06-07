@@ -1,7 +1,12 @@
 import React from "react";
+import WeatherMain from "./components/WeatherMain";
 
 function App() {
-  return <div>App</div>;
+  return (
+    <>
+      <WeatherMain />
+    </>
+  );
 }
 
 export default App;
