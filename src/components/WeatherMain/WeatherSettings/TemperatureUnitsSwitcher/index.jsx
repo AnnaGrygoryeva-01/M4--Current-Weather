@@ -10,7 +10,7 @@ function TemperatureUnitsSwitcher() {
 
         return (
           <>
-            <h2>Temperature Unit:</h2>
+            <h3>Temperature Unit:</h3>
             <select value={temperatureUnits} onChange={changeTemperatureUnits}>
               <option value="°C">°C</option>
               <option value="°F">°F</option>

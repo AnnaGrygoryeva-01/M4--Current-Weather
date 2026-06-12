@@ -1,13 +1,18 @@
 import React from "react";
 import WindUnitsSwitcher from "./WindUnitsSwitcher";
 import TemperatureUnitsSwitcher from "./TemperatureUnitsSwitcher";
+import styles from "./WeatherSettings.module.sass";
 
 function WeatherSettings() {
   return (
-    <>
-      <WindUnitsSwitcher />
-      <TemperatureUnitsSwitcher />
-    </>
+    <article className={styles.settingsContainer}>
+      <div>
+        <WindUnitsSwitcher />
+      </div>
+      <div>
+        <TemperatureUnitsSwitcher />
+      </div>
+    </article>
   );
 }
 

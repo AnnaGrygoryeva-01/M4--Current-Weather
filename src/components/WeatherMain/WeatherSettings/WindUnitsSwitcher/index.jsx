@@ -10,7 +10,7 @@ function WindUnitsSwitcher() {
 
         return (
           <>
-            <h2>Wind Speed Unit:</h2>
+            <h3>Wind Speed Unit:</h3>
             <select value={windUnits} onChange={changeWindUnits}>
               <option value="Km/h">Km/h</option>
               <option value="M/s">M/s</option>
