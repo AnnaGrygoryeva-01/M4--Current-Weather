@@ -3,7 +3,7 @@ import WeatherSettings from "./WeatherSettings";
 import WeatherDisplay from "./WeatherDisplay";
 import styles from "./WeatherMain.module.sass";
 import CONSTANTS from "../../constants";
-import WeatherContext from "../../contexts/weatherContext";
+import WeatherContext from "../../contexts/WeatherContext.js";
 
 const { KILOMETERS, METERS } = CONSTANTS.WIND;
 const { CELSIUS, FAHRENHEIT } = CONSTANTS.TEMPERATURE;

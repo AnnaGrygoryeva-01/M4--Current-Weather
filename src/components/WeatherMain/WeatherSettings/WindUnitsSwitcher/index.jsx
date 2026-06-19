@@ -1,4 +1,4 @@
-import WeatherContext from "../../../../contexts/weatherContext";
+import WeatherContext from "../../../../contexts/WeatherContext";
 
 function WindUnitsSwitcher() {
   return (
