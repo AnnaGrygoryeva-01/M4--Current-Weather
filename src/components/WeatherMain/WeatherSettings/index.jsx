@@ -1,4 +1,3 @@
-import React from "react";
 import WindUnitsSwitcher from "./WindUnitsSwitcher";
 import TemperatureUnitsSwitcher from "./TemperatureUnitsSwitcher";
 import styles from "./WeatherSettings.module.sass";

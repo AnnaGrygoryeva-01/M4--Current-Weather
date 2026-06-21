@@ -1,5 +1,7 @@
 import WeatherContext from "../../../../contexts/WeatherContext";
 
+const TEMPERATURE_UNITS_OPTIONS = ["°C", "°F"];
+
 function TemperatureUnitsSwitcher() {
   return (
     <WeatherContext.Consumer>
@@ -12,8 +14,11 @@ function TemperatureUnitsSwitcher() {
           <>
             <h3>Temperature Unit:</h3>
             <select value={temperatureUnits} onChange={changeTemperatureUnits}>
-              <option value="°C">°C</option>
-              <option value="°F">°F</option>
+              {TEMPERATURE_UNITS_OPTIONS.map((unit) => (
+                <option key={unit} value={unit}>
+                  {unit}
+                </option>
+              ))}
             </select>
           </>
         );

@@ -1,4 +1,3 @@
-import React from "react";
 import CONSTANTS from "../../../constants";
 import WeatherContext from "../../../contexts/WeatherContext";
 import styles from "./WeatherDisplay.module.sass";

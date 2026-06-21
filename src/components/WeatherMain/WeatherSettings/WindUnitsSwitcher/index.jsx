@@ -1,5 +1,7 @@
 import WeatherContext from "../../../../contexts/WeatherContext";
 
+const WIND_UNITS_OPTIONS = ["Km/h", "M/s"];
+
 function WindUnitsSwitcher() {
   return (
     <WeatherContext.Consumer>
@@ -12,8 +14,11 @@ function WindUnitsSwitcher() {
           <>
             <h3>Wind Speed Unit:</h3>
             <select value={windUnits} onChange={changeWindUnits}>
-              <option value="Km/h">Km/h</option>
-              <option value="M/s">M/s</option>
+              {WIND_UNITS_OPTIONS.map((unit) => (
+                <option key={unit} value={unit}>
+                  {unit}
+                </option>
+              ))}
             </select>
           </>
         );
