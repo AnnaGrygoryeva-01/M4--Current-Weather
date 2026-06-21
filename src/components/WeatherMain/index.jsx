@@ -5,8 +5,8 @@ import styles from "./WeatherMain.module.sass";
 import CONSTANTS from "../../constants";
 import WeatherContext from "../../contexts/WeatherContext.js";
 
-const { KILOMETERS, METERS } = CONSTANTS.WIND;
-const { CELSIUS, FAHRENHEIT } = CONSTANTS.TEMPERATURE;
+const { KILOMETERS } = CONSTANTS.WIND;
+const { CELSIUS } = CONSTANTS.TEMPERATURE;
 const { WEATHER_URL } = CONSTANTS;
 
 class WeatherMain extends Component {
@@ -24,26 +24,42 @@ class WeatherMain extends Component {
   }
 
   componentDidMount() {
+    this._abortController = null;
     this.fetchWeather();
   }
 
   fetchWeather = async () => {
-    try {
-      const response = await fetch(WEATHER_URL);
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-      const data = await response.json();
+    if (this._abortController) this._abortController.abort();
+    this._abortController = new AbortController();
+    const { signal } = this._abortController;
 
-      this.setState({
-        temp: data.current.temperature_2m,
-        windSpeed: data.current.wind_speed_10m,
-        isLoading: false,
-      });
+    try {
+      const res = await fetch(WEATHER_URL, { signal });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      const temp = Number.isFinite(data?.current?.temperature_2m)
+        ? data.current.temperature_2m
+        : null;
+      const windSpeed = Number.isFinite(data?.current?.wind_speed_10m)
+        ? data.current.wind_speed_10m
+        : null;
+
+      if (temp === null && windSpeed === null) {
+        this.setState({ error: "No weather data returned", isLoading: false });
+        return;
+      }
+
+      this.setState({ temp, windSpeed, isLoading: false });
     } catch (err) {
+      if (err.name === "AbortError") return;
       this.setState({ error: err.message, isLoading: false });
     }
   };
+
+  componentWillUnmount() {
+    if (this._abortController) this._abortController.abort();
+  }
 
   setWindUnits = (newWindUnits) => {
     this.setState({ windUnits: newWindUnits });
